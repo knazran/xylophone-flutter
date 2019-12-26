@@ -4,82 +4,39 @@ import 'package:audioplayers/audio_cache.dart';
 void main() => runApp(XylophoneApp());
 
 class XylophoneApp extends StatelessWidget {
-
-  void playSound(noteNumber){
+  void playSound(int noteNumber) {
     final player = AudioCache();
     player.play('note$noteNumber.wav');
+  }
+
+  Expanded buildXylophoneKey({Color color, int keyNum}) {
+    return Expanded(
+      child: FlatButton(
+        color: color,
+        onPressed: () {
+          playSound(keyNum);
+        },
+        child: Container(),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.black,
         body: SafeArea(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Expanded(
-                child: FlatButton(
-                  color: Colors.red,
-                  onPressed: () {
-                    playSound(1);
-                  },
-                  child: Container(),
-                ),
-              ),
-              Expanded(
-                child: FlatButton(
-                  color: Colors.orange,
-                  onPressed: () {
-                    playSound(2);
-                  },
-                  child: Container(),
-                ),
-              ),
-              Expanded(
-                child: FlatButton(
-                  color: Colors.yellow,
-                  onPressed: () {
-                    playSound(3);
-                  },
-                  child: Container(),
-                ),
-              ),
-              Expanded(
-                child: FlatButton(
-                  color: Colors.green,
-                  onPressed: () {
-                    playSound(4);
-                  },
-                  child: Container(),
-                ),
-              ),
-              Expanded(
-                child: FlatButton(
-                  color: Colors.green.shade900,
-                  onPressed: () {
-                    playSound(5);
-                  },
-                  child: Container(),
-                ),
-              ),
-              Expanded(
-                child: FlatButton(
-                  color: Colors.blue,
-                  onPressed: () {
-                    playSound(6);
-                  },
-                  child: Container(),
-                ),
-              ),
-              Expanded(
-                child: FlatButton(
-                  color: Colors.purple,
-                  onPressed: () {
-                    playSound(7);
-                  },
-                  child: Container(),
-                ),
-              ),
+              buildXylophoneKey(color: Colors.red, keyNum: 1),
+              buildXylophoneKey(color: Colors.orange, keyNum: 2),
+              buildXylophoneKey(color: Colors.yellow, keyNum: 3),
+              buildXylophoneKey(color: Colors.green, keyNum: 4),
+              buildXylophoneKey(color: Colors.green.shade900, keyNum: 5),
+              buildXylophoneKey(color: Colors.blue, keyNum: 6),
+              buildXylophoneKey(color: Colors.purple, keyNum: 7),
             ],
           ),
         ),
